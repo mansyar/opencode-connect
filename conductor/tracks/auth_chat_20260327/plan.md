@@ -42,7 +42,7 @@
   - [x] Add error handling UI
 - [x] Task: Write tests for Input and Button components (deferred - using RN built-ins for MVP)
 - [x] Task: Implement Input and Button base components (deferred - using React Native built-ins for MVP)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2b' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2b' (Protocol in workflow.md) [checkpoint: 420f7bd]
 
 ---
 
