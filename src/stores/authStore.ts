@@ -173,13 +173,17 @@ export const createAuthStore = () => {
   );
 };
 
-// Singleton store instance
+// Singleton store instance - this is already a Zustand hook
 export const authStore = createAuthStore();
 
 /**
  * Hook to use auth store in React components
  *
+ * In Zustand v5, the store created by create() is itself a hook.
+ * Use authStore directly to access state and actions.
+ *
  * @example
- * const { isAuthenticated, login, logout } = useAuthStore();
+ * const { isAuthenticated, login, logout } = authStore();
  */
-export const useAuthStore = () => authStore;
+// Re-export the store as the hook for convenience
+export const useAuthStore = authStore;
