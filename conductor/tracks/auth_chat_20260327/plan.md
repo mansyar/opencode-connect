@@ -135,13 +135,13 @@
 
 ### Settings Screen
 
-- [ ] Task: Write tests for SettingsScreen
-  - [ ] Test displays server URL
-  - [ ] Test logout button
-- [ ] Task: Implement SettingsScreen
-  - [ ] Display connected server URL
-  - [ ] Add disconnect button
-  - [ ] Show app version
+- [x] Task: Write tests for SettingsScreen (commit: 590304a)
+  - [x] Test displays server URL
+  - [x] Test logout button
+- [x] Task: Implement SettingsScreen (commit: 590304a)
+  - [x] Display connected server URL
+  - [x] Add disconnect button
+  - [x] Show app version
 - [ ] Task: Conductor - User Manual Verification 'Phase 5' (Protocol in workflow.md)
 
 ---
