@@ -99,14 +99,14 @@
 
 ### Session Store
 
-- [ ] Task: Write tests for sessionStore
-  - [ ] Test loadSessions action
-  - [ ] Test selectSession action
-  - [ ] Test session persistence
-- [ ] Task: Implement sessionStore with Zustand
-  - [ ] Define SessionStore interface
-  - [ ] Implement session list loading
-  - [ ] Implement session selection
+- [x] Task: Write tests for sessionStore (commit: b57cccc)
+  - [x] Test loadSessions action
+  - [x] Test selectSession action
+  - [x] Test session persistence
+- [x] Task: Implement sessionStore with Zustand (commit: b57cccc)
+  - [x] Define SessionStore interface
+  - [x] Implement session list loading
+  - [x] Implement session selection
 - [ ] Task: Conductor - User Manual Verification 'Phase 4a' (Protocol in workflow.md)
 
 ### Session Screen & Components
