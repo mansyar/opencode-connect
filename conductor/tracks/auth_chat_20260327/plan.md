@@ -150,14 +150,14 @@
 
 ### Navigation Setup
 
-- [ ] Task: Configure expo-router
-  - [ ] Set up root layout
-  - [ ] Configure tab navigator
-  - [ ] Set up auth gate
-- [ ] Task: Write tests for navigation
-- [ ] Task: Implement navigation flow
-  - [ ] Root layout with auth check
-  - [ ] Tab bar with icons
+- [x] Task: Configure expo-router (commit: ea28880)
+  - [x] Set up root layout
+  - [x] Configure tab navigator
+  - [x] Set up auth gate
+- [x] Task: Write tests for navigation (commit: ea28880)
+- [x] Task: Implement navigation flow (commit: ea28880)
+  - [x] Root layout with auth check
+  - [x] Tab bar with icons
   - [ ] Deep linking support
 - [ ] Task: Conductor - User Manual Verification 'Phase 6a' (Protocol in workflow.md)
 
