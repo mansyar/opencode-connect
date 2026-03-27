@@ -111,22 +111,22 @@
 
 ### Session Screen & Components
 
-- [ ] Task: Write tests for SessionCard component
-  - [ ] Test card rendering with session data
-  - [ ] Test click handler
-- [ ] Task: Implement SessionCard component
-  - [ ] Display session name
-  - [ ] Display last activity time
-  - [ ] Add touch feedback
-- [ ] Task: Write tests for SessionList component
-- [ ] Task: Implement SessionList component
-  - [ ] Create flat list of sessions
-  - [ ] Add pull-to-refresh
-  - [ ] Handle empty state
-- [ ] Task: Write tests for SessionsScreen integration
-- [ ] Task: Implement SessionsScreen
-  - [ ] Wire up session components
-  - [ ] Connect to sessionStore
+- [x] Task: Write tests for SessionCard component (commit: 9b8e04d)
+  - [x] Test card rendering with session data
+  - [x] Test click handler
+- [x] Task: Implement SessionCard component (commit: 9b8e04d)
+  - [x] Display session name
+  - [x] Display last activity time
+  - [x] Add touch feedback
+- [x] Task: Write tests for SessionList component (commit: 9b8e04d)
+- [x] Task: Implement SessionList component (commit: 9b8e04d)
+  - [x] Create flat list of sessions
+  - [x] Add pull-to-refresh
+  - [x] Handle empty state
+- [x] Task: Write tests for SessionsScreen integration (commit: 9b8e04d)
+- [x] Task: Implement SessionsScreen (commit: 9b8e04d)
+  - [x] Wire up session components
+  - [x] Connect to sessionStore
 - [ ] Task: Conductor - User Manual Verification 'Phase 4b' (Protocol in workflow.md)
 
 ---
