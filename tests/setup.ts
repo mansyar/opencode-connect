@@ -1,14 +1,15 @@
-import { vi } from "vitest";
+/// <reference types="vitest" />
+import { vi, type Mock } from 'vitest';
 
 // Mock expo-secure-store
-vi.mock("expo-secure-store", () => ({
+vi.mock('expo-secure-store', () => ({
   setItemAsync: vi.fn(() => Promise.resolve()),
   getItemAsync: vi.fn(() => Promise.resolve(null)),
   deleteItemAsync: vi.fn(() => Promise.resolve()),
 }));
 
 // Mock expo-router
-vi.mock("expo-router", () => ({
+vi.mock('expo-router', () => ({
   useRouter: () => ({
     push: vi.fn(),
     replace: vi.fn(),
@@ -20,8 +21,8 @@ vi.mock("expo-router", () => ({
 
 // Mock zustand - only mock the persist middleware for testing
 // We want the actual store behavior for unit tests
-vi.mock("zustand/middleware", () => ({
-  persist: (fn: (set: vi.Mock, get: vi.Mock) => object) => fn,
+vi.mock('zustand/middleware', () => ({
+  persist: (fn: (set: Mock, get: Mock) => object) => fn,
   createJSONStorage: () => ({
     getItem: async () => null,
     setItem: async () => {},
