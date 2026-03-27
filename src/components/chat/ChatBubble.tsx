@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Message } from "../../stores/chatStore";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Message } from '../../stores/chatStore';
 
 /**
  * ChatBubble Component
@@ -13,27 +13,24 @@ export interface ChatBubbleProps {
 }
 
 const COLORS = {
-  userBubble: "#1E3A5F",
-  agentBubble: "#1E293B",
-  userText: "#F8FAFC",
-  agentText: "#F8FAFC",
-  streaming: "#06B6D4",
-  timestamp: "#94A3B8",
+  userBubble: '#1E3A5F',
+  agentBubble: '#1E293B',
+  userText: '#F8FAFC',
+  agentText: '#F8FAFC',
+  streaming: '#06B6D4',
+  timestamp: '#94A3B8',
 } as const;
 
 const formatTimestamp = (timestamp: number): string => {
   const date = new Date(timestamp);
-  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 };
 
 export const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
   const { role, content, isStreaming, timestamp } = message;
-  const isUser = role === "user";
+  const isUser = role === 'user';
 
-  const bubbleStyle = [
-    styles.bubble,
-    isUser ? styles.userBubble : styles.agentBubble,
-  ];
+  const bubbleStyle = [styles.bubble, isUser ? styles.userBubble : styles.agentBubble];
 
   const textStyle = [styles.text, isUser ? styles.userText : styles.agentText];
 
@@ -60,15 +57,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     marginVertical: 4,
-    maxWidth: "80%",
+    maxWidth: '80%',
   },
   userBubble: {
     backgroundColor: COLORS.userBubble,
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
   },
   agentBubble: {
     backgroundColor: COLORS.agentBubble,
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
   },
   text: {
     fontSize: 16,
@@ -88,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: COLORS.timestamp,
     marginTop: 4,
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
   },
 });
 

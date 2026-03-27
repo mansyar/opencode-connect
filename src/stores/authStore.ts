@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import * as SecureStore from "expo-secure-store";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import * as SecureStore from 'expo-secure-store';
 
 /**
  * Auth Store Interface
@@ -26,8 +26,8 @@ export interface AuthStore {
 
 // Storage keys for SecureStore
 const STORAGE_KEYS = {
-  SERVER_URL: "opencode_server_url",
-  PASSWORD: "opencode_server_password",
+  SERVER_URL: 'opencode_server_url',
+  PASSWORD: 'opencode_server_password',
 } as const;
 
 /**
@@ -56,14 +56,14 @@ export const createAuthStore = () => {
           try {
             // Validate inputs
             if (!url || !password) {
-              throw new Error("URL and password are required");
+              throw new Error('URL and password are required');
             }
 
             // Validate URL format
             try {
               new URL(url);
             } catch {
-              throw new Error("Invalid URL format");
+              throw new Error('Invalid URL format');
             }
 
             // Store credentials securely
@@ -83,10 +83,7 @@ export const createAuthStore = () => {
 
             set({
               isLoading: false,
-              error:
-                error instanceof Error
-                  ? error.message
-                  : "Authentication failed",
+              error: error instanceof Error ? error.message : 'Authentication failed',
             });
             throw error;
           }
@@ -122,12 +119,8 @@ export const createAuthStore = () => {
          */
         restoreSession: async () => {
           try {
-            const storedUrl = await SecureStore.getItemAsync(
-              STORAGE_KEYS.SERVER_URL,
-            );
-            const storedPassword = await SecureStore.getItemAsync(
-              STORAGE_KEYS.PASSWORD,
-            );
+            const storedUrl = await SecureStore.getItemAsync(STORAGE_KEYS.SERVER_URL);
+            const storedPassword = await SecureStore.getItemAsync(STORAGE_KEYS.PASSWORD);
 
             if (storedUrl && storedPassword) {
               // Validate stored URL format
@@ -157,7 +150,7 @@ export const createAuthStore = () => {
         },
       }),
       {
-        name: "auth-storage",
+        name: 'auth-storage',
         storage: createJSONStorage(() => ({
           getItem: async () => null,
           setItem: async () => {},
@@ -168,8 +161,8 @@ export const createAuthStore = () => {
           isAuthenticated: state.isAuthenticated,
           serverUrl: state.serverUrl,
         }),
-      },
-    ),
+      }
+    )
   );
 };
 

@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
-import { View, FlatList, StyleSheet, ListRenderItem } from "react-native";
-import { Message } from "../../stores/chatStore";
-import { ChatBubble } from "./ChatBubble";
+import React, { useRef, useEffect } from 'react';
+import { View, FlatList, StyleSheet, ListRenderItem } from 'react-native';
+import { Message } from '../../stores/chatStore';
+import { ChatBubble } from './ChatBubble';
 
 /**
  * MessageList Component
@@ -14,7 +14,7 @@ export interface MessageListProps {
 }
 
 const COLORS = {
-  background: "#0F172A",
+  background: '#0F172A',
 } as const;
 
 export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
@@ -35,10 +35,7 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   useEffect(() => {
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1];
-      if (
-        lastMessage.isStreaming &&
-        lastMessage.content.length > lastMessageLength.current
-      ) {
+      if (lastMessage.isStreaming && lastMessage.content.length > lastMessageLength.current) {
         lastMessageLength.current = lastMessage.content.length;
         setTimeout(() => {
           flatListRef.current?.scrollToEnd({ animated: false });
@@ -47,9 +44,7 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     }
   }, [messages]);
 
-  const renderMessage: ListRenderItem<Message> = ({ item }) => (
-    <ChatBubble message={item} />
-  );
+  const renderMessage: ListRenderItem<Message> = ({ item }) => <ChatBubble message={item} />;
 
   const keyExtractor = (item: Message) => item.id;
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 import {
   View,
   Text,
@@ -6,9 +6,9 @@ import {
   StyleSheet,
   RefreshControl,
   type ListRenderItemInfo,
-} from "react-native";
-import { Session } from "../../stores/sessionStore";
-import { SessionCard } from "./SessionCard";
+} from 'react-native';
+import { Session } from '../../stores/sessionStore';
+import { SessionCard } from './SessionCard';
 
 /**
  * SessionList Component
@@ -26,15 +26,15 @@ export interface SessionListProps {
 }
 
 const COLORS = {
-  background: "#0F172A",
-  textPrimary: "#F8FAFC",
-  textSecondary: "#94A3B8",
-  emptyState: "#64748B",
+  background: '#0F172A',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#94A3B8',
+  emptyState: '#64748B',
 } as const;
 
 const EmptyStateMessage = {
-  LOADING: "Loading sessions...",
-  EMPTY: "No sessions found. Start a new chat to create one.",
+  LOADING: 'Loading sessions...',
+  EMPTY: 'No sessions found. Start a new chat to create one.',
 } as const;
 
 /**
@@ -62,7 +62,7 @@ export const SessionList: React.FC<SessionListProps> = ({
         isSelected={item.id === selectedSessionId}
       />
     ),
-    [onSelectSession, selectedSessionId],
+    [onSelectSession, selectedSessionId]
   );
 
   const keyExtractor = useCallback((item: Session) => item.id, []);
@@ -75,13 +75,10 @@ export const SessionList: React.FC<SessionListProps> = ({
         </Text>
       </View>
     ),
-    [isLoading],
+    [isLoading]
   );
 
-  const renderSeparator = useCallback(
-    () => <View style={styles.separator} />,
-    [],
-  );
+  const renderSeparator = useCallback(() => <View style={styles.separator} />, []);
 
   const canRefresh = Boolean(onRefresh) && !isLoading && !isRefreshing;
 
@@ -116,14 +113,14 @@ const styles = StyleSheet.create({
   },
   emptyContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingVertical: 40,
   },
   emptyText: {
     color: COLORS.emptyState,
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
   },
   separator: {
     height: 4,

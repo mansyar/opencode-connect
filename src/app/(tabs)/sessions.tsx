@@ -1,9 +1,9 @@
-import React, { useEffect, useCallback, useState } from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import { useRouter } from "expo-router";
-import { useAuthStore } from "../../stores/authStore";
-import { useSessionStore, Session } from "../../stores/sessionStore";
-import { SessionList } from "../../components/session/SessionList";
+import React, { useEffect, useCallback, useState } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useAuthStore } from '../../stores/authStore';
+import { useSessionStore, Session } from '../../stores/sessionStore';
+import { SessionList } from '../../components/session/SessionList';
 
 /**
  * SessionsScreen
@@ -14,21 +14,15 @@ import { SessionList } from "../../components/session/SessionList";
 export default function SessionsScreen() {
   const router = useRouter();
   const { isAuthenticated, serverUrl } = useAuthStore();
-  const {
-    sessions,
-    currentSession,
-    isLoading,
-    error,
-    loadSessions,
-    selectSession,
-  } = useSessionStore();
+  const { sessions, currentSession, isLoading, error, loadSessions, selectSession } =
+    useSessionStore();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Redirect to auth if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
-      router.replace("/auth");
+      router.replace('/auth');
     }
   }, [isAuthenticated, router]);
 
@@ -56,7 +50,7 @@ export default function SessionsScreen() {
       selectSession(session);
       router.push(`/chat?sessionId=${session.id}`);
     },
-    [selectSession, router],
+    [selectSession, router]
   );
 
   /**
@@ -64,7 +58,7 @@ export default function SessionsScreen() {
    */
   const getSubtitle = (): string | undefined => {
     if (sessions.length === 0) return undefined;
-    return `${sessions.length} session${sessions.length === 1 ? "" : "s"}`;
+    return `${sessions.length} session${sessions.length === 1 ? '' : 's'}`;
   };
 
   if (!isAuthenticated) {
@@ -80,9 +74,7 @@ export default function SessionsScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Sessions</Text>
-        {getSubtitle() && (
-          <Text style={styles.headerSubtitle}>{getSubtitle()}</Text>
-        )}
+        {getSubtitle() && <Text style={styles.headerSubtitle}>{getSubtitle()}</Text>}
         {serverUrl && (
           <Text style={styles.headerServer} numberOfLines={1}>
             {serverUrl}
@@ -123,48 +115,48 @@ export default function SessionsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0F172A",
+    backgroundColor: '#0F172A',
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#0F172A",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0F172A',
   },
   loadingText: {
-    color: "#94A3B8",
+    color: '#94A3B8',
     fontSize: 16,
     marginTop: 12,
   },
   header: {
-    backgroundColor: "#1E293B",
+    backgroundColor: '#1E293B',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#334155",
+    borderBottomColor: '#334155',
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#F8FAFC",
+    fontWeight: '600',
+    color: '#F8FAFC',
   },
   headerSubtitle: {
     fontSize: 12,
-    color: "#94A3B8",
+    color: '#94A3B8',
     marginTop: 2,
   },
   headerServer: {
     fontSize: 10,
-    color: "#64748B",
+    color: '#64748B',
     marginTop: 2,
   },
   errorContainer: {
-    backgroundColor: "#7F1D1D",
+    backgroundColor: '#7F1D1D',
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
   errorText: {
-    color: "#FCA5A5",
+    color: '#FCA5A5',
     fontSize: 14,
   },
 });

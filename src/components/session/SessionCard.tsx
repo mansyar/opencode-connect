@@ -1,12 +1,6 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  type GestureResponderEvent,
-} from "react-native";
-import { Session } from "../../stores/sessionStore";
+import React from 'react';
+import { View, Text, StyleSheet, Pressable, type GestureResponderEvent } from 'react-native';
+import { Session } from '../../stores/sessionStore';
 
 /**
  * SessionCard Component
@@ -21,12 +15,12 @@ export interface SessionCardProps {
 }
 
 const COLORS = {
-  primary: "#1E3A5F",
-  surface: "#1E293B",
-  background: "#0F172A",
-  textPrimary: "#F8FAFC",
-  textSecondary: "#94A3B8",
-  accent: "#06B6D4",
+  primary: '#1E3A5F',
+  surface: '#1E293B',
+  background: '#0F172A',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#94A3B8',
+  accent: '#06B6D4',
 } as const;
 
 /**
@@ -42,15 +36,15 @@ const formatRelativeTime = (lastActivity: number): string => {
   const days = Math.floor(hours / 24);
 
   if (days > 0) {
-    return days === 1 ? "1 day ago" : `${days} days ago`;
+    return days === 1 ? '1 day ago' : `${days} days ago`;
   }
   if (hours > 0) {
-    return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+    return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
   }
   if (minutes > 0) {
-    return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+    return minutes === 1 ? '1 minute ago' : `${minutes} minutes ago`;
   }
-  return "Just now";
+  return 'Just now';
 };
 
 export const SessionCard: React.FC<SessionCardProps> = ({
@@ -80,20 +74,11 @@ export const SessionCard: React.FC<SessionCardProps> = ({
           <Text style={styles.name} numberOfLines={1} testID="session-name">
             {name}
           </Text>
-          {isSelected && (
-            <View
-              style={styles.selectedIndicator}
-              testID="selected-indicator"
-            />
-          )}
+          {isSelected && <View style={styles.selectedIndicator} testID="selected-indicator" />}
         </View>
 
         {projectPath && (
-          <Text
-            style={styles.projectPath}
-            numberOfLines={1}
-            testID="session-project-path"
-          >
+          <Text style={styles.projectPath} numberOfLines={1} testID="session-project-path">
             {projectPath}
           </Text>
         )}
@@ -126,14 +111,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   name: {
     color: COLORS.textPrimary,
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
     flex: 1,
   },
   selectedIndicator: {

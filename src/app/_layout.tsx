@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { Stack } from "expo-router";
-import { useAuthStore } from "../stores/authStore";
+import React, { useEffect } from 'react';
+import { Stack } from 'expo-router';
+import { useAuthStore } from '../stores/authStore';
 
 /**
  * Root Layout
@@ -20,7 +20,7 @@ export default function RootLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: "#0F172A" },
+        contentStyle: { backgroundColor: '#0F172A' },
       }}
     >
       {/* Auth Screen - always accessible */}

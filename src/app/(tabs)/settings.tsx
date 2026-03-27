@@ -1,28 +1,21 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Alert,
-  ActivityIndicator,
-} from "react-native";
-import { useRouter } from "expo-router";
-import Constants from "expo-constants";
-import { useAuthStore } from "../../stores/authStore";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Pressable, Alert, ActivityIndicator } from 'react-native';
+import { useRouter } from 'expo-router';
+import Constants from 'expo-constants';
+import { useAuthStore } from '../../stores/authStore';
 
 // App version info
-const APP_VERSION = Constants.expoConfig?.version || "1.0.0";
-const BUILD_NUMBER = Constants.expoConfig?.android?.versionCode?.toString() || "1";
+const APP_VERSION = Constants.expoConfig?.version || '1.0.0';
+const BUILD_NUMBER = Constants.expoConfig?.android?.versionCode?.toString() || '1';
 
 const COLORS = {
-  primary: "#1E3A5F",
-  surface: "#1E293B",
-  background: "#0F172A",
-  textPrimary: "#F8FAFC",
-  textSecondary: "#94A3B8",
-  danger: "#DC2626",
-  dangerHover: "#B91C1C",
+  primary: '#1E3A5F',
+  surface: '#1E293B',
+  background: '#0F172A',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#94A3B8',
+  danger: '#DC2626',
+  dangerHover: '#B91C1C',
 } as const;
 
 /**
@@ -42,21 +35,17 @@ export default function SettingsScreen() {
    * Handle disconnect/logout
    */
   const handleDisconnect = () => {
-    Alert.alert(
-      "Disconnect",
-      "Are you sure you want to disconnect from the server?",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Disconnect",
-          style: "destructive",
-          onPress: performDisconnect,
-        },
-      ],
-    );
+    Alert.alert('Disconnect', 'Are you sure you want to disconnect from the server?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Disconnect',
+        style: 'destructive',
+        onPress: performDisconnect,
+      },
+    ]);
   };
 
   /**
@@ -66,9 +55,9 @@ export default function SettingsScreen() {
     setIsDisconnecting(true);
     try {
       await logout();
-      router.replace("/auth");
+      router.replace('/auth');
     } catch (error) {
-      Alert.alert("Error", "Failed to disconnect. Please try again.");
+      Alert.alert('Error', 'Failed to disconnect. Please try again.');
       setIsDisconnecting(false);
     }
   };
@@ -80,7 +69,7 @@ export default function SettingsScreen() {
     try {
       const parsed = new URL(url);
       const hostname = parsed.hostname || url;
-      const port = parsed.port ? `:${parsed.port}` : "";
+      const port = parsed.port ? `:${parsed.port}` : '';
       return hostname + port;
     } catch {
       return url;
@@ -157,11 +146,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#334155",
+    borderBottomColor: '#334155',
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: '600',
     color: COLORS.textPrimary,
   },
   content: {
@@ -173,9 +162,9 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 12,
-    fontWeight: "600",
+    fontWeight: '600',
     color: COLORS.textSecondary,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 8,
   },
@@ -198,8 +187,8 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     minHeight: 48,
   },
   disconnectButtonPressed: {
@@ -210,7 +199,7 @@ const styles = StyleSheet.create({
   },
   disconnectButtonText: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
     color: COLORS.textPrimary,
   },
 });

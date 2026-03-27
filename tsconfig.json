@@ -3,6 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["vitest/globals"]
   }
 }

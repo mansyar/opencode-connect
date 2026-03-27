@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import * as SecureStore from "expo-secure-store";
+import { create } from 'zustand';
+import * as SecureStore from 'expo-secure-store';
 
 /**
  * Message Interface
@@ -8,7 +8,7 @@ import * as SecureStore from "expo-secure-store";
  */
 export interface Message {
   id: string;
-  role: "user" | "agent";
+  role: 'user' | 'agent';
   content: string;
   timestamp: number;
   isStreaming?: boolean;
@@ -27,7 +27,7 @@ export interface ChatStore {
   error: string | null;
 
   // Actions
-  addMessage: (message: Omit<Message, "id" | "timestamp">) => string;
+  addMessage: (message: Omit<Message, 'id' | 'timestamp'>) => string;
   updateMessage: (id: string, updates: Partial<Message>) => void;
   appendToMessage: (id: string, token: string) => void;
   setStreaming: (id: string, isStreaming: boolean) => void;
@@ -39,7 +39,7 @@ export interface ChatStore {
 
 // Storage keys
 const STORAGE_KEYS = {
-  MESSAGES: "opencode_chat_messages",
+  MESSAGES: 'opencode_chat_messages',
 } as const;
 
 /**
@@ -84,9 +84,7 @@ export const createChatStore = () => {
      */
     updateMessage: (id, updates) => {
       set((state) => ({
-        messages: state.messages.map((msg) =>
-          msg.id === id ? { ...msg, ...updates } : msg,
-        ),
+        messages: state.messages.map((msg) => (msg.id === id ? { ...msg, ...updates } : msg)),
       }));
     },
 
@@ -96,7 +94,7 @@ export const createChatStore = () => {
     appendToMessage: (id, token) => {
       set((state) => ({
         messages: state.messages.map((msg) =>
-          msg.id === id ? { ...msg, content: msg.content + token } : msg,
+          msg.id === id ? { ...msg, content: msg.content + token } : msg
         ),
       }));
     },
@@ -106,9 +104,7 @@ export const createChatStore = () => {
      */
     setStreaming: (id, isStreaming) => {
       set((state) => ({
-        messages: state.messages.map((msg) =>
-          msg.id === id ? { ...msg, isStreaming } : msg,
-        ),
+        messages: state.messages.map((msg) => (msg.id === id ? { ...msg, isStreaming } : msg)),
       }));
     },
 

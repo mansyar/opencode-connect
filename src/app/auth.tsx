@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,9 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
-import { useRouter } from "expo-router";
-import { useAuthStore } from "../stores/authStore";
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import { useAuthStore } from '../stores/authStore';
 
 /**
  * AuthScreen - Login screen for OpenCode Connect
@@ -22,8 +22,8 @@ export default function AuthScreen() {
   const router = useRouter();
   const { login, isLoading, error, clearError } = useAuthStore();
 
-  const [url, setUrl] = useState("");
-  const [password, setPassword] = useState("");
+  const [url, setUrl] = useState('');
+  const [password, setPassword] = useState('');
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleLogin = async () => {
@@ -33,14 +33,14 @@ export default function AuthScreen() {
 
     // Validate inputs
     if (!url || !password) {
-      setValidationError("URL and password are required");
+      setValidationError('URL and password are required');
       return;
     }
 
     try {
       new URL(url);
     } catch {
-      setValidationError("Invalid URL format");
+      setValidationError('Invalid URL format');
       return;
     }
 
@@ -48,7 +48,7 @@ export default function AuthScreen() {
     try {
       await login(url, password);
       // Navigate to chat on success
-      router.replace("/(tabs)/chat");
+      router.replace('/(tabs)/chat');
     } catch {
       // Error is handled by the store
     }
@@ -59,7 +59,7 @@ export default function AuthScreen() {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.content}>
         {/* Header */}
@@ -134,81 +134,81 @@ export default function AuthScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0F172A",
+    backgroundColor: '#0F172A',
   },
   content: {
     flex: 1,
     padding: 24,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   header: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 48,
   },
   title: {
     fontSize: 28,
-    fontWeight: "bold",
-    color: "#F8FAFC",
+    fontWeight: 'bold',
+    color: '#F8FAFC',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: "#94A3B8",
+    color: '#94A3B8',
   },
   form: {
-    width: "100%",
+    width: '100%',
   },
   inputContainer: {
     marginBottom: 20,
   },
   label: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#F8FAFC",
+    fontWeight: '600',
+    color: '#F8FAFC',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: "#1E293B",
+    backgroundColor: '#1E293B',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
-    color: "#F8FAFC",
+    color: '#F8FAFC',
     borderWidth: 1,
-    borderColor: "#334155",
+    borderColor: '#334155',
   },
   errorContainer: {
-    backgroundColor: "#7F1D1D",
+    backgroundColor: '#7F1D1D',
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
   },
   errorText: {
-    color: "#FCA5A5",
+    color: '#FCA5A5',
     fontSize: 14,
-    textAlign: "center",
+    textAlign: 'center',
   },
   button: {
-    backgroundColor: "#06B6D4",
+    backgroundColor: '#06B6D4',
     borderRadius: 12,
     padding: 16,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 8,
   },
   buttonDisabled: {
     opacity: 0.7,
   },
   buttonText: {
-    color: "#F8FAFC",
+    color: '#F8FAFC',
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   footer: {
     marginTop: 48,
-    alignItems: "center",
+    alignItems: 'center',
   },
   footerText: {
     fontSize: 12,
-    color: "#64748B",
-    textAlign: "center",
+    color: '#64748B',
+    textAlign: 'center',
   },
 });

@@ -1,26 +1,26 @@
-import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import { useRouter } from "expo-router";
-import { useAuthStore } from "../../stores/authStore";
-import { useChatStore, Message } from "../../stores/chatStore";
-import { MessageList } from "../../components/chat/MessageList";
-import { ChatInput } from "../../components/chat/ChatInput";
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useAuthStore } from '../../stores/authStore';
+import { useChatStore, Message } from '../../stores/chatStore';
+import { MessageList } from '../../components/chat/MessageList';
+import { ChatInput } from '../../components/chat/ChatInput';
 
 /**
  * ChatScreen
- * 
+ *
  * Main chat screen that displays messages and handles
  * real-time streaming communication with the OpenCode agent.
  */
 export default function ChatScreen() {
   const router = useRouter();
   const { isAuthenticated, serverUrl } = useAuthStore();
-  const { 
-    messages, 
-    currentSessionId, 
+  const {
+    messages,
+    currentSessionId,
     isLoading,
-    addMessage, 
-    appendToMessage, 
+    addMessage,
+    appendToMessage,
     setStreaming,
     setLoading,
     setError,
@@ -32,7 +32,7 @@ export default function ChatScreen() {
   // Redirect to auth if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
-      router.replace("/auth");
+      router.replace('/auth');
     }
   }, [isAuthenticated, router]);
 
@@ -47,14 +47,14 @@ export default function ChatScreen() {
 
     // Add user message
     addMessage({
-      role: "user",
+      role: 'user',
       content: text,
     });
 
     // Create agent message placeholder for streaming response
     const agentMessageId = addMessage({
-      role: "agent",
-      content: "",
+      role: 'agent',
+      content: '',
       isStreaming: true,
     });
     streamingMessageIdRef.current = agentMessageId;
@@ -65,7 +65,7 @@ export default function ChatScreen() {
     try {
       await simulateStreamingResponse(agentMessageId, text);
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Failed to get response");
+      setError(error instanceof Error ? error.message : 'Failed to get response');
       if (streamingMessageIdRef.current) {
         setStreaming(streamingMessageIdRef.current, false);
       }
@@ -77,7 +77,7 @@ export default function ChatScreen() {
 
   /**
    * Simulate streaming response from the agent
-   * 
+   *
    * NOTE: This is a placeholder for actual OpenCode SDK integration.
    * In production, this would use the SDK's streaming capabilities.
    */
@@ -90,7 +90,7 @@ export default function ChatScreen() {
 
     // Simulate streaming tokens
     const responseText = generateResponse(userMessage);
-    const tokens = responseText.split("");
+    const tokens = responseText.split('');
 
     for (const token of tokens) {
       appendToMessage(messageId, token);
@@ -104,22 +104,22 @@ export default function ChatScreen() {
 
   /**
    * Generate a mock response based on user message
-   * 
+   *
    * NOTE: This is placeholder logic for testing without a real OpenCode server.
    */
   const generateResponse = (userMessage: string): string => {
     const lower = userMessage.toLowerCase();
 
-    if (lower.includes("hello") || lower.includes("hi")) {
-      return "Hello! I am your OpenCode coding assistant. How can I help you today?";
+    if (lower.includes('hello') || lower.includes('hi')) {
+      return 'Hello! I am your OpenCode coding assistant. How can I help you today?';
     }
 
-    if (lower.includes("help")) {
-      return "I can help you with:\n- Writing and reviewing code\n- Explaining concepts\n- Debugging issues\n- Refactoring code\n\nWhat would you like to work on?";
+    if (lower.includes('help')) {
+      return 'I can help you with:\n- Writing and reviewing code\n- Explaining concepts\n- Debugging issues\n- Refactoring code\n\nWhat would you like to work on?';
     }
 
-    if (lower.includes("bye") || lower.includes("goodbye")) {
-      return "Goodbye! Feel free to return when you need help with your code.";
+    if (lower.includes('bye') || lower.includes('goodbye')) {
+      return 'Goodbye! Feel free to return when you need help with your code.';
     }
 
     return `I received your message: "${userMessage}". In a real implementation, this would connect to the OpenCode agent for a proper response. The agent can help with coding tasks, debugging, and more.`;
@@ -129,7 +129,7 @@ export default function ChatScreen() {
    * Get session name for header
    */
   const getSessionName = (): string => {
-    if (!currentSessionId) return "New Chat";
+    if (!currentSessionId) return 'New Chat';
     return `Session ${currentSessionId.slice(0, 8)}`;
   };
 
@@ -171,29 +171,29 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0F172A",
+    backgroundColor: '#0F172A',
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#0F172A",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0F172A',
   },
   header: {
-    backgroundColor: "#1E293B",
+    backgroundColor: '#1E293B',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#334155",
+    borderBottomColor: '#334155',
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: "600",
-    color: "#F8FAFC",
+    fontWeight: '600',
+    color: '#F8FAFC',
   },
   headerSubtitle: {
     fontSize: 12,
-    color: "#94A3B8",
+    color: '#94A3B8',
     marginTop: 2,
   },
   messageContainer: {

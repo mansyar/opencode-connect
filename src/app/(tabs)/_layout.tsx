@@ -1,10 +1,10 @@
-import React from "react";
-import { Tabs } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { Tabs } from 'expo-router';
+import { View, Text, StyleSheet } from 'react-native';
 
 /**
  * Tab Icons
- * 
+ *
  * Simple icon components for the tab bar.
  */
 const ChatIcon = ({ focused }: { focused: boolean }) => (
@@ -26,17 +26,17 @@ const SettingsIcon = ({ focused }: { focused: boolean }) => (
 );
 
 const COLORS = {
-  background: "#0F172A",
-  surface: "#1E293B",
-  textPrimary: "#F8FAFC",
-  textSecondary: "#94A3B8",
-  accent: "#06B6D4",
-  border: "#334155",
+  background: '#0F172A',
+  surface: '#1E293B',
+  textPrimary: '#F8FAFC',
+  textSecondary: '#94A3B8',
+  accent: '#06B6D4',
+  border: '#334155',
 } as const;
 
 /**
  * Tab Layout
- * 
+ *
  * Configures the tab navigation with icons.
  */
 export default function TabLayout() {
@@ -56,7 +56,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: COLORS.textSecondary,
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: "500",
+          fontWeight: '500',
         },
       }}
     >
@@ -69,21 +69,21 @@ export default function TabLayout() {
       <Tabs.Screen
         name="chat"
         options={{
-          title: "Chat",
+          title: 'Chat',
           tabBarIcon: ({ focused }) => <ChatIcon focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="sessions"
         options={{
-          title: "Sessions",
+          title: 'Sessions',
           tabBarIcon: ({ focused }) => <SessionsIcon focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: 'Settings',
           tabBarIcon: ({ focused }) => <SettingsIcon focused={focused} />,
         }}
       />
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 28,
     height: 28,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   iconFocused: {
     // Optional: Add visual feedback for focused state

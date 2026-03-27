@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 /**
  * End-to-End Integration Tests
@@ -32,7 +32,7 @@ interface AuthState {
 }
 
 interface ChatState {
-  messages: Array<{ id: string; role: string; content: string }>;
+  messages: { id: string; role: string; content: string }[];
   currentSessionId: string | null;
   isLoading: boolean;
 }
@@ -47,16 +47,16 @@ interface SessionState {
 /**
  * E2E Test Scenario: User Login Flow
  */
-describe("E2E: User Login Flow", () => {
+describe('E2E: User Login Flow', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it("should complete login with valid credentials", async () => {
+  it('should complete login with valid credentials', async () => {
     // Arrange
     const credentials: UserCredentials = {
-      url: "http://laptop.tailnet-name.ts.net:4096",
-      password: "test-password",
+      url: 'http://laptop.tailnet-name.ts.net:4096',
+      password: 'test-password',
     };
 
     let authState: AuthState = {
@@ -86,7 +86,7 @@ describe("E2E: User Login Flow", () => {
     expect(authState.error).toBeNull();
   });
 
-  it("should fail login with invalid URL", async () => {
+  it('should fail login with invalid URL', async () => {
     // Arrange
     let authState: AuthState = {
       isAuthenticated: false,
@@ -105,15 +105,15 @@ describe("E2E: User Login Flow", () => {
     authState = {
       ...authState,
       isLoading: false,
-      error: "Invalid URL format",
+      error: 'Invalid URL format',
     };
 
     // Assert
     expect(authState.isAuthenticated).toBe(false);
-    expect(authState.error).toBe("Invalid URL format");
+    expect(authState.error).toBe('Invalid URL format');
   });
 
-  it("should fail login with empty credentials", async () => {
+  it('should fail login with empty credentials', async () => {
     let authState: AuthState = {
       isAuthenticated: false,
       serverUrl: null,
@@ -130,20 +130,20 @@ describe("E2E: User Login Flow", () => {
     authState = {
       ...authState,
       isLoading: false,
-      error: "URL and password are required",
+      error: 'URL and password are required',
     };
 
     // Assert
     expect(authState.isAuthenticated).toBe(false);
-    expect(authState.error).toBe("URL and password are required");
+    expect(authState.error).toBe('URL and password are required');
   });
 });
 
 /**
  * E2E Test Scenario: Chat Flow
  */
-describe("E2E: Chat Flow", () => {
-  it("should send and receive messages", async () => {
+describe('E2E: Chat Flow', () => {
+  it('should send and receive messages', async () => {
     // Arrange
     let chatState: ChatState = {
       messages: [],
@@ -152,40 +152,32 @@ describe("E2E: Chat Flow", () => {
     };
 
     // Act - Send user message
-    const userMessageId = "msg_1";
+    const userMessageId = 'msg_1';
     chatState = {
       ...chatState,
-      messages: [
-        ...chatState.messages,
-        { id: userMessageId, role: "user", content: "Hello!" },
-      ],
+      messages: [...chatState.messages, { id: userMessageId, role: 'user', content: 'Hello!' }],
     };
 
     // Assert user message
     expect(chatState.messages).toHaveLength(1);
-    expect(chatState.messages[0].role).toBe("user");
-    expect(chatState.messages[0].content).toBe("Hello!");
+    expect(chatState.messages[0].role).toBe('user');
+    expect(chatState.messages[0].content).toBe('Hello!');
 
     // Act - Receive agent response
-    const agentMessageId = "msg_2";
+    const agentMessageId = 'msg_2';
     chatState = {
       ...chatState,
-      messages: [
-        ...chatState.messages,
-        { id: agentMessageId, role: "agent", content: "" },
-      ],
+      messages: [...chatState.messages, { id: agentMessageId, role: 'agent', content: '' }],
       isLoading: true,
     };
 
     // Simulate streaming response
-    const responseText = "Hi! How can I help?";
+    const responseText = 'Hi! How can I help?';
     for (const char of responseText) {
       chatState = {
         ...chatState,
         messages: chatState.messages.map((msg) =>
-          msg.id === agentMessageId
-            ? { ...msg, content: msg.content + char }
-            : msg,
+          msg.id === agentMessageId ? { ...msg, content: msg.content + char } : msg
         ),
       };
     }
@@ -193,19 +185,19 @@ describe("E2E: Chat Flow", () => {
     chatState = {
       ...chatState,
       messages: chatState.messages.map((msg) =>
-        msg.id === agentMessageId ? { ...msg, content: responseText } : msg,
+        msg.id === agentMessageId ? { ...msg, content: responseText } : msg
       ),
       isLoading: false,
     };
 
     // Assert
     expect(chatState.messages).toHaveLength(2);
-    expect(chatState.messages[1].role).toBe("agent");
-    expect(chatState.messages[1].content).toBe("Hi! How can I help?");
+    expect(chatState.messages[1].role).toBe('agent');
+    expect(chatState.messages[1].content).toBe('Hi! How can I help?');
     expect(chatState.isLoading).toBe(false);
   });
 
-  it("should handle streaming response", async () => {
+  it('should handle streaming response', async () => {
     let chatState: ChatState = {
       messages: [],
       currentSessionId: null,
@@ -213,20 +205,15 @@ describe("E2E: Chat Flow", () => {
     };
 
     // Create streaming message
-    const streamingId = "msg_streaming";
+    const streamingId = 'msg_streaming';
     chatState = {
       ...chatState,
-      messages: [
-        ...chatState.messages,
-        { id: streamingId, role: "agent", content: "" },
-      ],
+      messages: [...chatState.messages, { id: streamingId, role: 'agent', content: '' }],
       isLoading: true,
     };
 
     // Verify streaming state
-    const streamingMessage = chatState.messages.find(
-      (m) => m.id === streamingId,
-    );
+    const streamingMessage = chatState.messages.find((m) => m.id === streamingId);
     expect(streamingMessage).toBeDefined();
   });
 });
@@ -234,8 +221,8 @@ describe("E2E: Chat Flow", () => {
 /**
  * E2E Test Scenario: Session Switching Flow
  */
-describe("E2E: Session Switching Flow", () => {
-  it("should load and display sessions", async () => {
+describe('E2E: Session Switching Flow', () => {
+  it('should load and display sessions', async () => {
     // Arrange
     let sessionState: SessionState = {
       sessions: [],
@@ -248,8 +235,8 @@ describe("E2E: Session Switching Flow", () => {
     sessionState = { ...sessionState, isLoading: true };
 
     const mockSessions: Session[] = [
-      { id: "session_1", name: "Project Alpha", lastActivity: Date.now() },
-      { id: "session_2", name: "Bug Fixes", lastActivity: Date.now() - 5000 },
+      { id: 'session_1', name: 'Project Alpha', lastActivity: Date.now() },
+      { id: 'session_2', name: 'Bug Fixes', lastActivity: Date.now() - 5000 },
     ];
 
     sessionState = {
@@ -263,11 +250,11 @@ describe("E2E: Session Switching Flow", () => {
     expect(sessionState.isLoading).toBe(false);
   });
 
-  it("should select a session", async () => {
+  it('should select a session', async () => {
     // Arrange
     const mockSessions: Session[] = [
-      { id: "session_1", name: "Project Alpha", lastActivity: Date.now() },
-      { id: "session_2", name: "Bug Fixes", lastActivity: Date.now() - 5000 },
+      { id: 'session_1', name: 'Project Alpha', lastActivity: Date.now() },
+      { id: 'session_2', name: 'Bug Fixes', lastActivity: Date.now() - 5000 },
     ];
 
     let sessionState: SessionState = {
@@ -286,14 +273,14 @@ describe("E2E: Session Switching Flow", () => {
 
     // Assert
     expect(sessionState.currentSession).toEqual(selectedSession);
-    expect(sessionState.currentSession?.name).toBe("Project Alpha");
+    expect(sessionState.currentSession?.name).toBe('Project Alpha');
   });
 
-  it("should switch between sessions", async () => {
+  it('should switch between sessions', async () => {
     // Arrange
     const mockSessions: Session[] = [
-      { id: "session_1", name: "Project Alpha", lastActivity: Date.now() },
-      { id: "session_2", name: "Bug Fixes", lastActivity: Date.now() - 5000 },
+      { id: 'session_1', name: 'Project Alpha', lastActivity: Date.now() },
+      { id: 'session_2', name: 'Bug Fixes', lastActivity: Date.now() - 5000 },
     ];
 
     let sessionState: SessionState = {
@@ -310,40 +297,38 @@ describe("E2E: Session Switching Flow", () => {
     };
 
     // Assert
-    expect(sessionState.currentSession?.id).toBe("session_2");
-    expect(sessionState.currentSession?.name).toBe("Bug Fixes");
+    expect(sessionState.currentSession?.id).toBe('session_2');
+    expect(sessionState.currentSession?.name).toBe('Bug Fixes');
   });
 });
 
 /**
  * E2E Test Scenario: Logout Flow
  */
-describe("E2E: Logout Flow", () => {
-  it("should clear state on logout", async () => {
+describe('E2E: Logout Flow', () => {
+  it('should clear state on logout', async () => {
     // Arrange - User is logged in
     let authState: AuthState = {
       isAuthenticated: true,
-      serverUrl: "http://laptop.tailnet-name.ts.net:4096",
+      serverUrl: 'http://laptop.tailnet-name.ts.net:4096',
       isLoading: false,
       error: null,
     };
 
     let chatState: ChatState = {
       messages: [
-        { id: "1", role: "user", content: "Hello" },
-        { id: "2", role: "agent", content: "Hi!" },
+        { id: '1', role: 'user', content: 'Hello' },
+        { id: '2', role: 'agent', content: 'Hi!' },
       ],
-      currentSessionId: "session_1",
+      currentSessionId: 'session_1',
       isLoading: false,
     };
 
     let sessionState: SessionState = {
-      sessions: [
-        { id: "session_1", name: "Project Alpha", lastActivity: Date.now() },
-      ],
+      sessions: [{ id: 'session_1', name: 'Project Alpha', lastActivity: Date.now() }],
       currentSession: {
-        id: "session_1",
-        name: "Project Alpha",
+        id: 'session_1',
+        name: 'Project Alpha',
         lastActivity: Date.now(),
       },
       isLoading: false,
@@ -383,8 +368,8 @@ describe("E2E: Logout Flow", () => {
 /**
  * E2E Test Scenario: Complete User Journey
  */
-describe("E2E: Complete User Journey", () => {
-  it("should flow: login -> chat -> switch session -> logout", async () => {
+describe('E2E: Complete User Journey', () => {
+  it('should flow: login -> chat -> switch session -> logout', async () => {
     // Step 1: Initial state - not authenticated
     let authState: AuthState = {
       isAuthenticated: false,
@@ -402,7 +387,7 @@ describe("E2E: Complete User Journey", () => {
     };
     authState = {
       isAuthenticated: true,
-      serverUrl: "http://laptop.tailnet-name.ts.net:4096",
+      serverUrl: 'http://laptop.tailnet-name.ts.net:4096',
       isLoading: false,
       error: null,
     };
@@ -423,8 +408,8 @@ describe("E2E: Complete User Journey", () => {
     };
     sessionState = {
       sessions: [
-        { id: "session_1", name: "Project Alpha", lastActivity: Date.now() },
-        { id: "session_2", name: "Bug Fixes", lastActivity: Date.now() - 5000 },
+        { id: 'session_1', name: 'Project Alpha', lastActivity: Date.now() },
+        { id: 'session_2', name: 'Bug Fixes', lastActivity: Date.now() - 5000 },
       ],
       currentSession: null,
       isLoading: false,
@@ -439,7 +424,7 @@ describe("E2E: Complete User Journey", () => {
       currentSession: sessionState.sessions[0],
     };
 
-    expect(sessionState.currentSession?.name).toBe("Project Alpha");
+    expect(sessionState.currentSession?.name).toBe('Project Alpha');
 
     // Step 5: Chat
     let chatState: ChatState = {
@@ -450,14 +435,11 @@ describe("E2E: Complete User Journey", () => {
 
     chatState = {
       ...chatState,
-      messages: [
-        ...chatState.messages,
-        { id: "msg_1", role: "user", content: "Hello!" },
-      ],
+      messages: [...chatState.messages, { id: 'msg_1', role: 'user', content: 'Hello!' }],
     };
 
     expect(chatState.messages).toHaveLength(1);
-    expect(chatState.messages[0].content).toBe("Hello!");
+    expect(chatState.messages[0].content).toBe('Hello!');
 
     // Step 6: Switch to different session
     sessionState = {
@@ -470,7 +452,7 @@ describe("E2E: Complete User Journey", () => {
       currentSessionId: sessionState.currentSession?.id || null,
     };
 
-    expect(chatState.currentSessionId).toBe("session_2");
+    expect(chatState.currentSessionId).toBe('session_2');
 
     // Step 7: Logout
     authState = {

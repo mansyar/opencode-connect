@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import * as SecureStore from "expo-secure-store";
+import { create } from 'zustand';
+import * as SecureStore from 'expo-secure-store';
 
 /**
  * Session Interface
@@ -38,7 +38,7 @@ export interface SessionStore {
 
 // Storage keys for persistence
 const STORAGE_KEYS = {
-  CURRENT_SESSION: "opencode_current_session",
+  CURRENT_SESSION: 'opencode_current_session',
 } as const;
 
 /**
@@ -73,22 +73,22 @@ export const createSessionStore = () => {
         // In production, this would come from the actual SDK
         const mockSessions: Session[] = [
           {
-            id: "session_1",
-            name: "Project Alpha",
+            id: 'session_1',
+            name: 'Project Alpha',
             lastActivity: Date.now() - 1000,
-            projectPath: "/home/user/project-alpha",
+            projectPath: '/home/user/project-alpha',
           },
           {
-            id: "session_2",
-            name: "Bug Fixes",
+            id: 'session_2',
+            name: 'Bug Fixes',
             lastActivity: Date.now() - 5000,
-            projectPath: "/home/user/bug-fixes",
+            projectPath: '/home/user/bug-fixes',
           },
           {
-            id: "session_3",
-            name: "Feature Development",
+            id: 'session_3',
+            name: 'Feature Development',
             lastActivity: Date.now() - 10000,
-            projectPath: "/home/user/feature-dev",
+            projectPath: '/home/user/feature-dev',
           },
         ];
 
@@ -102,8 +102,7 @@ export const createSessionStore = () => {
       } catch (error) {
         set({
           isLoading: false,
-          error:
-            error instanceof Error ? error.message : "Failed to load sessions",
+          error: error instanceof Error ? error.message : 'Failed to load sessions',
         });
       }
     },
@@ -118,14 +117,11 @@ export const createSessionStore = () => {
 
       // Persist to SecureStore asynchronously (fire-and-forget)
       if (session) {
-        SecureStore.setItemAsync(
-          STORAGE_KEYS.CURRENT_SESSION,
-          JSON.stringify(session),
-        ).catch(console.error);
-      } else {
-        SecureStore.deleteItemAsync(STORAGE_KEYS.CURRENT_SESSION).catch(
-          console.error,
+        SecureStore.setItemAsync(STORAGE_KEYS.CURRENT_SESSION, JSON.stringify(session)).catch(
+          console.error
         );
+      } else {
+        SecureStore.deleteItemAsync(STORAGE_KEYS.CURRENT_SESSION).catch(console.error);
       }
     },
 

@@ -17,7 +17,7 @@
 
 - [x] Task: Add typecheck script to package.json ("typecheck": "tsc --noEmit") f15274e
 - [x] Task: Create scripts/check-line-count.js to reject files > 500 lines 5167df8
-- [ ] Task: Install lint-staged and configure in package.json
-- [ ] Task: Configure lint-staged to run: ESLint+Prettier, typecheck, line count
-- [ ] Task: Test pre-commit hook manually
+- [x] Task: Install lint-staged and configure in package.json 2b1c25c
+- [x] Task: Configure lint-staged to run: ESLint+Prettier, typecheck, line count 2b1c25c
+- [~] Task: Test pre-commit hook manually
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Pre-commit Checks' (Protocol in workflow.md)

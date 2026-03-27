@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 /**
  * CodeBlock Component
@@ -15,30 +15,27 @@ export interface CodeBlockProps {
 }
 
 const COLORS = {
-  background: "#1E293B",
-  border: "#334155",
-  text: "#F8FAFC",
+  background: '#1E293B',
+  border: '#334155',
+  text: '#F8FAFC',
 } as const;
 
 const FONTS = {
-  mono: "JetBrains Mono",
+  mono: 'JetBrains Mono',
   size: 14,
 } as const;
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({
-  code,
-  language = "text",
-}) => {
+export const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'text' }) => {
   // Normalize language for react-syntax-highlighter
   const normalizeLanguage = (lang: string): string => {
     const languageMap: Record<string, string> = {
-      js: "javascript",
-      ts: "typescript",
-      py: "python",
-      rb: "ruby",
-      sh: "bash",
-      shell: "bash",
-      yml: "yaml",
+      js: 'javascript',
+      ts: 'typescript',
+      py: 'python',
+      rb: 'ruby',
+      sh: 'bash',
+      shell: 'bash',
+      yml: 'yaml',
     };
     return languageMap[lang.toLowerCase()] || lang;
   };
@@ -79,10 +76,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.border,
     marginVertical: 4,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   codeContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     padding: 12,
     margin: 0,
   },

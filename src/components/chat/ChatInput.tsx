@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from 'react-native';
 
 /**
  * ChatInput Component
@@ -24,14 +24,14 @@ export interface ChatInputProps {
 const MAX_MESSAGE_LENGTH = 4000;
 
 const COLORS = {
-  background: "#1E293B",
-  inputBackground: "#0F172A",
-  text: "#F8FAFC",
-  placeholder: "#64748B",
-  sendButton: "#06B6D4",
-  sendButtonDisabled: "#334155",
-  border: "#334155",
-  warning: "#F59E0B",
+  background: '#1E293B',
+  inputBackground: '#0F172A',
+  text: '#F8FAFC',
+  placeholder: '#64748B',
+  sendButton: '#06B6D4',
+  sendButtonDisabled: '#334155',
+  border: '#334155',
+  warning: '#F59E0B',
 };
 
 export const ChatInput: React.FC<ChatInputProps> = ({
@@ -39,7 +39,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   disabled = false,
   isStreaming = false,
 }) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   const remainingChars = MAX_MESSAGE_LENGTH - text.length;
   const showWarning = text.length > MAX_MESSAGE_LENGTH * 0.9;
@@ -48,22 +48,22 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   const handleSend = () => {
     if (!canSend) return;
 
-    const formattedMessage = text.trim().replace(/\s+/g, " ");
+    const formattedMessage = text.trim().replace(/\s+/g, ' ');
     onSend(formattedMessage);
-    setText("");
+    setText('');
   };
 
   const getPlaceholder = () => {
     if (isStreaming) {
-      return "Waiting for response...";
+      return 'Waiting for response...';
     }
-    return "Type a message...";
+    return 'Type a message...';
   };
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
     >
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -92,12 +92,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 
       {(showWarning || remainingChars < 100) && (
         <View style={styles.charCountContainer}>
-          <Text
-            style={[
-              styles.charCount,
-              remainingChars < 0 && styles.charCountError,
-            ]}
-          >
+          <Text style={[styles.charCount, remainingChars < 0 && styles.charCountError]}>
             {remainingChars} characters remaining
           </Text>
         </View>
@@ -108,8 +103,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "flex-end",
+    flexDirection: 'row',
+    alignItems: 'flex-end',
     paddingHorizontal: 16,
     paddingVertical: 8,
     backgroundColor: COLORS.background,
@@ -136,8 +131,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     paddingVertical: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sendButtonDisabled: {
     backgroundColor: COLORS.sendButtonDisabled,
@@ -145,10 +140,10 @@ const styles = StyleSheet.create({
   sendButtonText: {
     color: COLORS.text,
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   charCountContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 60,
     right: 20,
   },

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useRouter } from "expo-router";
-import { useAuthStore } from "../stores/authStore";
+import { useEffect } from 'react';
+import { useRouter } from 'expo-router';
+import { useAuthStore } from '../stores/authStore';
 
 /**
  * Index Screen
@@ -16,9 +16,9 @@ export default function IndexScreen() {
     restoreSession().then(() => {
       // Navigate based on auth state
       if (isAuthenticated) {
-        router.replace("/(tabs)/chat");
+        router.replace('/(tabs)/chat');
       } else {
-        router.replace("/auth");
+        router.replace('/auth');
       }
     });
   }, [isAuthenticated, restoreSession, router]);
