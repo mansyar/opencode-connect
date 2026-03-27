@@ -100,9 +100,10 @@
 
 | Package | Purpose | Version |
 | :--- | :--- | :--- |
-| `eslint` | TypeScript/React linting | ^9.0 |
-| `eslint-config-expo` | Expo's ESLint config | Latest |
-| `prettier` | Code formatting | ^3.3 |
+| `eslint` | TypeScript/React linting | ^9.0 | Compatible with Expo SDK 55 |
+| `eslint-config-expo` | Expo's ESLint config | ^55.0.0 | |
+| `prettier` | Code formatting | ^3.8.1 | |
+| `lint-staged` | Pre-commit hook runner | ^16.4.0 | Runs lint, format, typecheck, and line-limit check |
 
 ### Build & CI
 
