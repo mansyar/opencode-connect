@@ -50,47 +50,47 @@
 
 ### Chat Store
 
-- [ ] Task: Write tests for chatStore
-  - [ ] Test initial state
-  - [ ] Test addMessage action
-  - [ ] Test streaming token append
-  - [ ] Test message list rendering
-- [ ] Task: Implement chatStore with Zustand
-  - [ ] Define ChatStore interface
-  - [ ] Implement message actions
-  - [ ] Add streaming support
+- [x] Task: Write tests for chatStore (commit: a722766)
+  - [x] Test initial state
+  - [x] Test addMessage action
+  - [x] Test streaming token append
+  - [x] Test message list rendering
+- [x] Task: Implement chatStore with Zustand (commit: 7acd83f)
+  - [x] Define ChatStore interface
+  - [x] Implement message actions
+  - [x] Add streaming support
 - [ ] Task: Conductor - User Manual Verification 'Phase 3a' (Protocol in workflow.md)
 
 ### Chat Screen & Components
 
-- [ ] Task: Write tests for ChatBubble component
-  - [ ] Test user bubble rendering
-  - [ ] Test agent bubble rendering
-  - [ ] Test code block display
-- [ ] Task: Implement ChatBubble component
-  - [ ] Create user message bubble (right-aligned, blue)
-  - [ ] Create agent message bubble (left-aligned, gray)
-  - [ ] Add code block support with syntax highlighting
-- [ ] Task: Write tests for CodeBlock component
-- [ ] Task: Implement CodeBlock component
-  - [ ] Create markdown renderer
-  - [ ] Add syntax highlighting
-  - [ ] Apply JetBrains Mono font
-- [ ] Task: Write tests for MessageList component
-- [ ] Task: Implement MessageList component
-  - [ ] Create scrollable message container
-  - [ ] Auto-scroll to bottom on new message
-  - [ ] Handle streaming messages
-- [ ] Task: Write tests for ChatInput component
-- [ ] Task: Implement ChatInput component
-  - [ ] Create text input field
-  - [ ] Create send button
-  - [ ] Add disabled state during streaming
-- [ ] Task: Write tests for ChatScreen integration
-- [ ] Task: Implement ChatScreen
-  - [ ] Wire up all chat components
-  - [ ] Connect to OpenCode SDK streaming
-  - [ ] Add header with session info
+- [x] Task: Write tests for ChatBubble component (commit: 0c2a981)
+  - [x] Test user bubble rendering
+  - [x] Test agent bubble rendering
+  - [x] Test code block display
+- [x] Task: Implement ChatBubble component (commit: e523dff)
+  - [x] Create user message bubble (right-aligned, blue)
+  - [x] Create agent message bubble (left-aligned, gray)
+  - [x] Add code block support with syntax highlighting (deferred to CodeBlock component)
+- [x] Task: Write tests for CodeBlock component (commit: 9aebc49)
+- [x] Task: Implement CodeBlock component (commit: 729104e)
+  - [x] Create markdown renderer
+  - [x] Add syntax highlighting
+  - [x] Apply JetBrains Mono font
+- [x] Task: Write tests for MessageList component (commit: bfa190d)
+- [x] Task: Implement MessageList component (commit: 689e1e5)
+  - [x] Create scrollable message container
+  - [x] Auto-scroll to bottom on new message
+  - [x] Handle streaming messages
+- [x] Task: Write tests for ChatInput component (commit: feb5f0a)
+- [x] Task: Implement ChatInput component (commit: bd09ced)
+  - [x] Create text input field
+  - [x] Create send button
+  - [x] Add disabled state during streaming
+- [x] Task: Write tests for ChatScreen integration (commit: cdd6203)
+- [x] Task: Implement ChatScreen (commit: 5ec0934)
+  - [x] Wire up all chat components
+  - [x] Connect to OpenCode SDK streaming
+  - [x] Add header with session info
 - [ ] Task: Conductor - User Manual Verification 'Phase 3b' (Protocol in workflow.md)
 
 ---
