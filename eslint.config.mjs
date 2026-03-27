@@ -1,5 +1,3 @@
-import expo from 'eslint-config-expo';
+const expo = await import("eslint-config-expo/flat.js");
 
-export default expo({
-  strict: true,
-});
+export default expo.default;
