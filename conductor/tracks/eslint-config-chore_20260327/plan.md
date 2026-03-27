@@ -16,7 +16,7 @@
 ## Phase 3: Configure Pre-commit Checks
 
 - [x] Task: Add typecheck script to package.json ("typecheck": "tsc --noEmit") f15274e
-- [ ] Task: Create scripts/check-line-count.js to reject files > 500 lines
+- [x] Task: Create scripts/check-line-count.js to reject files > 500 lines 5167df8
 - [ ] Task: Install lint-staged and configure in package.json
 - [ ] Task: Configure lint-staged to run: ESLint+Prettier, typecheck, line count
 - [ ] Task: Test pre-commit hook manually
