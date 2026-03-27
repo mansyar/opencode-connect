@@ -27,7 +27,7 @@
   - [x] Implement login action with credential validation
   - [x] Implement logout action
   - [x] Add persistence middleware
-- [ ] Task: Conductor - User Manual Verification 'Phase 2a' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2a' (Protocol in workflow.md)
 
 ### Auth Screen & Components
 
